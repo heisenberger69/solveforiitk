@@ -1,3 +1,9 @@
+#include<string.h>
+#include</home/dhruvmittal/Desktop/genai/student.hpp>
+using namespace std;
+
+
+
 class visitor
 {
     string name;
@@ -6,4 +12,4 @@ class visitor
     int visitor_id;
     int vehicle_no;
     int govt_id;;
-}
+};

@@ -1,3 +1,6 @@
+#include<string.h>
+using namespace std;
+
 class employee
 {
     public:
@@ -6,4 +9,4 @@ class employee
         bool inside_status;
 
 
-}
+};

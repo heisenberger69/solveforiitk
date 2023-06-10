@@ -1,3 +1,5 @@
+#include<string>
+using namespace std;
 class student
 {
     public:
@@ -7,6 +9,7 @@ class student
         string mail_id;
         string branch;
         long mobile_no;
-        bool inside_status;
-        string visit_place;
-}
+        bool inside_status;       //if the student is inside the campus
+        string visit_place;      
+        int room_no;
+};
