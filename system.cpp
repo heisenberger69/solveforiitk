@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
-#include</home/dhruvmittal/Desktop/genai/employee.hpp>
-#include</home/dhruvmittal/Desktop/genai/student.hpp>
-#include</home/dhruvmittal/Desktop/genai/visitor.hpp>
-
-
+#include<classes/employee.hpp>
+#include<classes/student.hpp>
+#include<classes/visitor.hpp>
 
 using namespace std;

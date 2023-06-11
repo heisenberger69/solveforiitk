@@ -1,5 +1,5 @@
 #include<string.h>
-#include</home/dhruvmittal/Desktop/genai/student.hpp>
+#include<student.hpp>
 using namespace std;
 
 
