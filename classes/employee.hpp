@@ -7,14 +7,15 @@ class employee
         string name;
         int mobile_no;
         bool inside_status;
-      
 
-        // void set_employee(string Name,int Mobile_no,bool Inside_status)
-        // {
-        //     strcpy(name,Name);
-        //     mobile_no = Mobile_no;
-        //     inside_status = Inside_status;
-        // }
+
+    public:  
+
+    void set_employee(string Name,bool Inside_status)
+    {
+        name = Name;            
+        inside_status = Inside_status;
+    }
 
 
 
