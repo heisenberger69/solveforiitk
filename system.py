@@ -1,6 +1,24 @@
 from classes.employee import Employee
 from classes.student import Student
 from classes.visitor import Visitor
+import pyttsx3
+engine = pyttsx3.init()
+
+
+import speech_recognition as sr
+
+r = sr.Recognizer()
+m = sr.Microphone()
+def textfromspeech():
+
+    with m as source: r.adjust_for_ambient_noise(source)
+
+    print("Say something!")
+    with m as source: audio = r.listen(source,timeout = 5)
+
+    value = r.recognize_google(audio)
+    return value
+
 
 students = [Student() for _ in range(1000)]
 employees = [Employee() for _ in range(1000)]
@@ -32,36 +50,47 @@ def object_type(input):
 
 def main():
     dhruv = Student()
+    ayushmaan = Student()
     hardick = Visitor()
     nikhil = Employee()
-
+    
+    
     dhruv.set_student("dhruv", True)
+    ayushmaan.set_student("ayushmaan",True)
     hardick.set_visitor("hardick", False)
     nikhil.set_employee("nikhil", True)
 
     students[0] = dhruv
+    students[1] = ayushmaan
     visitors[0] = hardick
     employees[0] = nikhil
 
     print("Enter your name:")
-    input_name = input()
+    input_name = input()                 #through face recognition
 
     object_type(input_name)
 
     if user_type == "student":
-        print("Student recognized successfully.")
-        print("Enter visit place:")
-        destination = input()
+        engine.say("student recognized successfully")
+        engine.runAndWait()
+        engine.say("where do you wish to go")
+        engine.runAndWait()
+        destination = textfromspeech()
         students[user_index].visit_place = destination
         students[user_index].inside_status = False
-        print("Enjoy your visit to", destination)
+        engine.say("Enjoy your visit to ")
+        engine.say(str(destination))
+        engine.runAndWait()
+    
 
     elif user_type == "employee":
-        print("Employee recognized successfully.")
+        engine.say("employee recognized successfully")
+        engine.runAndWait()
         employees[user_index].inside_status = False
 
     elif user_type == "visitor":
-        print("Visitor recognized successfully.")
+        engine.say("visitor recognized successfully")
+        engine.runAndWait()
 
     main()
 
