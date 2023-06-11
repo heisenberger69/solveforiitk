@@ -1,5 +1,5 @@
-#include<string.h>
-#include<student.hpp>
+#include<string>
+#include</home/dhruvmittal/Desktop/genai/classes/student.hpp>
 using namespace std;
 
 
@@ -11,5 +11,6 @@ class visitor
     student* student_ptr;
     int visitor_id;
     int vehicle_no;
-    int govt_id;;
+    int govt_id;
+    bool inside_status;
 };
