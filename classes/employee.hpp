@@ -3,8 +3,9 @@ using namespace std;
 
 class employee
 {
-    private:
+    public:
         string name;
+        bool is_employee;
         int mobile_no;
         bool inside_status;
 
@@ -15,6 +16,7 @@ class employee
     {
         name = Name;            
         inside_status = Inside_status;
+        is_employee = true;
     }
 
 

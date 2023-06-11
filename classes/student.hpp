@@ -3,8 +3,9 @@
 using namespace std;
 class student
 {
-    private:
+    public:
         string name;
+        bool is_student;          //to check if a student is registered
         int roll_no;
         int batch;
         string mail_id;
@@ -20,6 +21,7 @@ class student
     {
         name = Name;
         inside_status = Inside_status;
+        is_student = true;
     }
 
 

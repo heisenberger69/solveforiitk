@@ -6,8 +6,9 @@ using namespace std;
 
 class visitor
 {
-    private:
+    public:
         string name;
+        bool is_visitor;
         long mobile_no;
         student* student_ptr;
         int visitor_id;
@@ -17,11 +18,12 @@ class visitor
 
 
     public:
-    
+
     void set_visitor(string Name,bool Inside_status)
     {
-        name = name;
+        name = Name;
         inside_status = Inside_status;
+        is_visitor = true;
     }
         
 };
