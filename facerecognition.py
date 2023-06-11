@@ -3,50 +3,51 @@ import cv2
 import numpy as np
 import io
 
-# Capture video from the webcam
-cap = cv2.VideoCapture(0)
+def facedetect():
 
-# Wait for a few seconds to allow the camera to warm up
-cv2.waitKey(3000)
+    cap = cv2.VideoCapture(0)
+    cv2.waitKey(3000)
+    ret, frame = cap.read()
 
-# Read a frame from the webcam
-ret, frame = cap.read()
+    if not ret:
+        print("Failed to capture frame")
+        exit()
 
-# If the frame is not captured successfully, exit the program
-if not ret:
-    print("Failed to capture frame")
-    exit()
+    frame_jpg = cv2.imencode('.jpg', frame)[1].tobytes()
 
-# Convert the frame to JPEG format in memory
-frame_jpg = cv2.imencode('.jpg', frame)[1].tobytes()
+    cap.release()
+    cv2.destroyAllWindows()
 
-# Release the VideoCapture object
-cap.release()
-cv2.destroyAllWindows()
+    known_image_paths = [ 'faces/dhruv.jpeg', 'faces/anubhav.jpeg', 'faces/hardick.jpeg', 'faces/agam.jpeg']
+    known_face_encodings = []
 
-# Load and encode known faces
-known_image_paths = ['faces/nikhil.jpeg', 'faces/ayushmaan.jpeg', 'faces/dhruv.jpeg', 'faces/anubhav.jpeg', 'faces/hardick.jpeg','faces/agam.jpeg']
-known_face_encodings = []
+    known_names = ['dhruv','anubhav','hardick','agam']  
 
-for image_path in known_image_paths:
-    image = face_recognition.load_image_file(image_path)
-    face_encoding = face_recognition.face_encodings(image)[0]
-    known_face_encodings.append(face_encoding)
+    for image_path in known_image_paths:
+        image = face_recognition.load_image_file(image_path)
+        face_encoding = face_recognition.face_encodings(image)[0]
+        known_face_encodings.append(face_encoding)
 
-# Load the unknown image
-unknown_image = face_recognition.load_image_file(io.BytesIO(frame_jpg))
 
-# Find face locations and encodings in the unknown image
-face_locations = face_recognition.face_locations(unknown_image)
-face_encodings = face_recognition.face_encodings(unknown_image, face_locations)
+        
+        name = image_path.split('/')[-1].split('.')[0]  
+        known_names.append(name)
 
-# Compare face encodings of unknown faces with known faces
-for face_encoding in face_encodings:
-    matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-    name = "Unknown"
+    unknown_image = face_recognition.load_image_file(io.BytesIO(frame_jpg))
 
-    if True in matches:
-        first_match_index = matches.index(True)
-        name = f"Known Face {first_match_index + 1}"
+    face_locations = face_recognition.face_locations(unknown_image)
+    face_encodings = face_recognition.face_encodings(unknown_image, face_locations)
 
-    print(f"Face recognized: {name}")
+    for face_encoding in face_encodings:
+        matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+        name = "Unknown"
+
+        if True in matches:
+            first_match_index = matches.index(True)
+            name = known_names[first_match_index]  
+
+        # print(f"Face recognized: {name}")
+        return name
+
+
+print(facedetect())
