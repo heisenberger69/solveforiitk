@@ -1,7 +1,7 @@
 import face_recognition
 
 # Load and encode known faces
-known_image_paths = ['nawazuddin-siddiqui-1200.jpg', 'OIP.jpeg']
+known_image_paths = ['faces/nikhil.jpeg','faces/ayushmaan.jpeg','faces/dhruv.jpeg','faces/anubhav.jpeg','faces/hardick.jpeg']
 known_face_encodings = []
 
 for image_path in known_image_paths:
@@ -10,7 +10,7 @@ for image_path in known_image_paths:
     known_face_encodings.append(face_encoding)
 
 # Load an unknown image
-unknown_image_path = 'R.jpeg'
+unknown_image_path = 'faces/anubhavtest.jpeg'
 unknown_image = face_recognition.load_image_file(unknown_image_path)
 
 # Find face locations and encodings in the unknown image
