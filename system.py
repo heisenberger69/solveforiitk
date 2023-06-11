@@ -70,7 +70,7 @@ def main():
 
     object_type(input_name)
 
-    if user_type == "student":
+    if user_type == "student" and students[user_index].inside_status == True:
         engine.say("student recognized successfully")
         engine.runAndWait()
         engine.say("where do you wish to go")
@@ -81,12 +81,34 @@ def main():
         engine.say("Enjoy your visit to ")
         engine.say(str(destination))
         engine.runAndWait()
+
+    elif user_type == "student" and students[user_index].inside_status == False:
+        engine.say("student recognized successfully")
+        engine.runAndWait()
+        engine.say("welcome back to the campus")
+        engine.runAndWait()
+        
+        students[user_index].visit_place = "campus"
+        students[user_index].inside_status = True
+       
     
 
-    elif user_type == "employee":
+    elif user_type == "employee" and employees[user_index].inside_status == True:
         engine.say("employee recognized successfully")
         engine.runAndWait()
+        engine.say("happy journey")
+        engine.runAndWait()
         employees[user_index].inside_status = False
+
+
+    elif user_type == "employee" and employees[user_index].inside_status == False:
+        engine.say("employee recognized successfully")
+        engine.runAndWait()
+        engine.say("welcome back to the campus")
+        engine.runAndWait()
+        employees[user_index].inside_status = True
+
+
 
     elif user_type == "visitor":
         engine.say("visitor recognized successfully")
