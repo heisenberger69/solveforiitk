@@ -5,8 +5,9 @@ class employee
 {
     public:
         string name;
+        int employee_no;
         bool is_employee;
-        int mobile_no;
+        // int mobile_no;
         bool inside_status;
 
 

@@ -94,7 +94,7 @@ int main()
 
     //////////////EXITING/////////////
 
-    cout<<"enter your name\n";                 //will be implemented by opencv
+    cout<<"\nenter your name\n";                 //will be implemented by opencv
     string input;
     cin>>input;
      
@@ -104,21 +104,18 @@ int main()
    
     if(*ut == "student")                               //if the individual is of class student
     {
-        cout<<"\nstudent recognised successfully";
+        cout<<"\nstudent recognised successfully\n";
         
         
         
-         cout<<"\nenter visit place ";                 //will be implemented by speech to text;
+        
         
 
-         string destination;
 
-         cin>>destination;
+         s[*ui].visit_place = "NA";
+         s[*ui].inside_status = true;
 
-         s[*ui].visit_place = destination;
-         s[*ui].inside_status = false;
-
-         cout<<"enjoy your visit to "<<destination<<"\n";
+         cout<<"welcome back "<<s[*ui].name;
          
          
     }
@@ -130,15 +127,17 @@ int main()
     {
         cout<<"employee recognised successfully\n";
 
-        e[*ui].inside_status = false;
+        e[*ui].inside_status = true;
+
+        cout<<"welcome back "<<e[*ui].name<<"\n";
         
         
     }
 
 
-    else if(*ut == "visitor")                       //if the individual is of class visitor
+    else                                              //definitely a visitor
     {
-        cout<<"visitor recognised successfully\n";
+        
     }
    
     main();
