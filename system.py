@@ -27,10 +27,10 @@ def facedetect():
     cap.release()
     cv2.destroyAllWindows()
 
-    known_image_paths = [  'faces/dhruv.jpeg', 'faces/anubhav.jpeg', 'faces/hardick.jpeg', 'faces/agam.jpeg']
+    known_image_paths = [  'faces/dhruv.jpeg', 'faces/anubhav.jpeg', 'faces/hardick.jpeg','faces/hardick2.jpeg','faces/hardick3.jpeg','faces/hardick4.jpeg','faces/pratham1.jpeg','faces/pratham2.jpeg','faces/pratham3.jpeg','faces/pratham4.jpeg','faces/agam.jpeg']
     known_face_encodings = []
 
-    known_names = ['dhruv','anubhav','hardick','agam']  
+    known_names = ['dhruv','anubhav','hardick','hardick','hardick','hardick','pratham','pratham','pratham','pratham','agam']  
 
     for image_path in known_image_paths:
         image = face_recognition.load_image_file(image_path)
@@ -101,29 +101,57 @@ def object_type(input):
             user_index = i
             break
 
+
+    # if i>100000 and <999999:
+    #     user_type = "student"
+    # else
+    #     user_type = "employee"    
+            
+
+
+
+
+
+
+
+
+
+dhruv = Student()
+pratham = Student()
+ayushmaan = Student()
+hardick = Visitor()
+nikhil = Employee()
+agam = Student()
+dhruv.set_student("dhruv")
+agam.set_student("agam")
+ayushmaan.set_student("ayushmaan")
+hardick.set_visitor("hardick", False)
+nikhil.set_employee("nikhil", True)
+pratham.set_student("pratham")
+
+
+
+
+
+
+
 def main():
-    dhruv = Student()
-    ayushmaan = Student()
-    hardick = Visitor()
-    nikhil = Employee()
     
-    
-    dhruv.set_student("dhruv", True)
-    ayushmaan.set_student("ayushmaan",True)
-    hardick.set_visitor("hardick", False)
-    nikhil.set_employee("nikhil", True)
+
 
     students[0] = dhruv
     students[1] = ayushmaan
+    students[2] = agam
+    students[3] = pratham
     visitors[0] = hardick
     employees[0] = nikhil
 
-    # print("Enter your name:")
-    input_name = facedetect()           #through face recognition
+    
+    input_name = facedetect()          
 
     object_type(input_name)
 
-    if user_type == "student" and students[user_index].inside_status == True:
+    if user_type == "student" and students[user_index].name == input_name and students[user_index].inside_status == True:
         engine.say("student recognized successfully")
         engine.runAndWait()
         engine.say("where do you wish to go")
@@ -134,6 +162,7 @@ def main():
         engine.say("Enjoy your visit to ")
         engine.say(str(destination))
         engine.runAndWait()
+
 
     elif user_type == "student" and students[user_index].inside_status == False:
         engine.say("student recognized successfully")
