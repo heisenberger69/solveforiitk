@@ -1,21 +1,12 @@
 import speech_recognition as sr
 
+r = sr.Recognizer()
+m = sr.Microphone()
 
-def recognize_speech_from_mic():
-    with sr.Microphone() as source:
-        print("Speak something...")
-        audio = sr.listen(source)
+with m as source: r.adjust_for_ambient_noise(source)
 
-    try:
-        text = sr.recognize_google(audio)
-        return text
-    except sr.UnknownValueError:
-        print("Sorry, I could not understand.")
-    except sr.RequestError as e:
-        print(f"Request error: {e}")
+print("Say something!")
+with m as source: audio = r.listen(source,timeout = 3)
 
-    return ""
-
-
-recognized_text = recognize_speech_from_mic()
-print("Recognized text:", recognized_text)
+value = r.recognize_google(audio)
+print(value)
