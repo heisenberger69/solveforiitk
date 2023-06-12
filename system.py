@@ -2,6 +2,9 @@ from classes.employee import Employee
 from classes.student import Student
 from classes.visitor import Visitor
 import pyttsx3
+import mysql.connector
+
+        
 
 engine = pyttsx3.init()
 
@@ -59,7 +62,6 @@ def facedetect():
             first_match_index = matches.index(True)
             name = known_names[first_match_index]  
 
-        # print(f"Face recognized: {name}")
         return name
 
 import speech_recognition as sr
@@ -140,7 +142,23 @@ anubhav.set_student("anubhav")
 
 
 def main():
-    
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     students[0] = anubhav
@@ -151,7 +169,8 @@ def main():
     employees[1] = dhruv
 
     
-    input_name = facedetect()          
+    input_name = facedetect()  
+    # input_name = input()       
 
     object_type(input_name)
     print(input_name)
@@ -169,7 +188,7 @@ def main():
         engine.runAndWait()
 
 
-    elif user_type == "student" and students[user_index].name == input_name and students[user_index].inside_status == False:
+    elif user_type == "student" and students[user_index].inside_status == False:
         engine.say("student recognized successfully")
         engine.runAndWait()
         engine.say("welcome back to the campus")

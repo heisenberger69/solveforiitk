@@ -1,0 +1,5 @@
+student
+
+name rollno bool visit place  string1 stirng 2 stirng 3 strin 4
+
+raghav 22   1            null    p1 
