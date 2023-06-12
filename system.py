@@ -150,6 +150,7 @@ def main():
     input_name = facedetect()          
 
     object_type(input_name)
+    print(input_name)
 
     if user_type == "student" and students[user_index].name == input_name and students[user_index].inside_status == True:
         engine.say("student recognized successfully")
@@ -164,7 +165,7 @@ def main():
         engine.runAndWait()
 
 
-    elif user_type == "student" and students[user_index].inside_status == False:
+    elif user_type == "student" and students[user_index].name == input_name and students[user_index].inside_status == False:
         engine.say("student recognized successfully")
         engine.runAndWait()
         engine.say("welcome back to the campus")
@@ -175,7 +176,7 @@ def main():
        
     
 
-    elif user_type == "employee" and employees[user_index].inside_status == True:
+    elif user_type == "employee" and  employees[user_index].name == input_name and employees[user_index].inside_status == True:
         engine.say("employee recognized successfully")
         engine.runAndWait()
         engine.say("happy journey")
@@ -183,7 +184,7 @@ def main():
         employees[user_index].inside_status = False
 
 
-    elif user_type == "employee" and employees[user_index].inside_status == False:
+    elif user_type == "employee" and  employees[user_index].name == input_name and employees[user_index].inside_status == False:
         engine.say("employee recognized successfully")
         engine.runAndWait()
         engine.say("welcome back to the campus")
