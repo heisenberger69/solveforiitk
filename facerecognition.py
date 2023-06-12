@@ -18,10 +18,10 @@ def facedetect():
     cap.release()
     cv2.destroyAllWindows()
 
-    known_image_paths = [ 'faces/dhruv.jpeg', 'faces/anubhav.jpeg', 'faces/hardick.jpeg','faces/hardick2.jpeg','faces/hardick3.jpeg','faces/hardick3.jpeg', 'faces/agam.jpeg']
+    known_image_paths = [ 'faces/dhruv1.jpeg', 'faces/dhruv2.jpeg','faces/anubhav1.jpeg','faces/anubhav2.jpeg' ,'faces/hardick1.jpeg','faces/hardick2.jpeg','faces/ayushmaan1.jpeg','faces/ayushmaan2.jpeg']
     known_face_encodings = []
 
-    known_names = ['dhruv','anubhav','hardick','hardick','hardick','hardick','agam']  
+    known_names = ['dhruv','dhruv','anubhav','anubhav','hardick','hardick','ayushmaan','ayushmaan']  
 
     for image_path in known_image_paths:
         image = face_recognition.load_image_file(image_path)

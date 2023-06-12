@@ -15,6 +15,10 @@ import io
 def facedetect():
 
     cap = cv2.VideoCapture(0)
+    _,feed = cap.read()
+
+    cv2.imshow("frame",feed)
+
     cv2.waitKey(3000)
     ret, frame = cap.read()
 
@@ -27,10 +31,10 @@ def facedetect():
     cap.release()
     cv2.destroyAllWindows()
 
-    known_image_paths = [  'faces/dhruv.jpeg', 'faces/anubhav.jpeg', 'faces/hardick.jpeg','faces/hardick2.jpeg','faces/hardick3.jpeg','faces/hardick4.jpeg','faces/pratham1.jpeg','faces/pratham2.jpeg','faces/pratham3.jpeg','faces/pratham4.jpeg','faces/agam.jpeg']
+    known_image_paths = [ 'faces/dhruv1.jpeg', 'faces/dhruv2.jpeg','faces/anubhav1.jpeg','faces/anubhav2.jpeg' ,'faces/hardick1.jpeg','faces/hardick2.jpeg']
     known_face_encodings = []
 
-    known_names = ['dhruv','anubhav','hardick','hardick','hardick','hardick','pratham','pratham','pratham','pratham','agam']  
+    known_names = ['dhruv','dhruv','anubhav','anubhav','hardick','hardick']  
 
     for image_path in known_image_paths:
         image = face_recognition.load_image_file(image_path)
@@ -116,18 +120,18 @@ def object_type(input):
 
 
 
-dhruv = Student()
-pratham = Student()
+dhruv = Employee()
+anubhav = Student()
 ayushmaan = Student()
-hardick = Visitor()
-nikhil = Employee()
-agam = Student()
-dhruv.set_student("dhruv")
-agam.set_student("agam")
+hardick = Employee()
+# nikhil = Employee()
+# agam = Student()
+dhruv.set_employee("dhruv",False)
+# agam.set_student("agam")
 ayushmaan.set_student("ayushmaan")
-hardick.set_visitor("hardick", False)
-nikhil.set_employee("nikhil", True)
-pratham.set_student("pratham")
+hardick.set_employee("hardick",True)
+# nikhil.set_employee("nikhil", True)
+anubhav.set_student("anubhav")
 
 
 
@@ -139,12 +143,12 @@ def main():
     
 
 
-    students[0] = dhruv
+    students[0] = anubhav
     students[1] = ayushmaan
-    students[2] = agam
-    students[3] = pratham
-    visitors[0] = hardick
-    employees[0] = nikhil
+    # students[2] = agam
+    # students[3] = pratham
+    employees[0] = hardick
+    employees[1] = dhruv
 
     
     input_name = facedetect()          
