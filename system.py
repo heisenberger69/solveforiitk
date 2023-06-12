@@ -14,6 +14,11 @@ import cv2
 import numpy as np
 import io
 
+
+known_image_paths = []
+
+known_names = []  
+
 def facedetect():
 
     cap = cv2.VideoCapture(0)
@@ -33,10 +38,10 @@ def facedetect():
     cap.release()
     cv2.destroyAllWindows()
 
-    known_image_paths = [ 'faces/dhruv1.jpeg', 'faces/dhruv2.jpeg','faces/anubhav1.jpeg','faces/anubhav2.jpeg' ,'faces/hardick1.jpeg','faces/hardick2.jpeg']
+    # known_image_paths = [ 'faces/dhruv1.jpeg', 'faces/dhruv2.jpeg','faces/anubhav1.jpeg','faces/anubhav2.jpeg' ,'faces/hardick1.jpeg','faces/hardick2.jpeg']
     known_face_encodings = []
 
-    known_names = ['dhruv','dhruv','anubhav','anubhav','hardick','hardick']  
+    # known_names = ['dhruv','dhruv','anubhav','anubhav','hardick','hardick']  
 
     for image_path in known_image_paths:
         image = face_recognition.load_image_file(image_path)
@@ -63,6 +68,13 @@ def facedetect():
 
         return name
 
+
+
+
+
+
+
+
 import speech_recognition as sr
 
 r = sr.Recognizer()
@@ -84,6 +96,35 @@ visitors = [Visitor() for _ in range(1000)]
 
 user_type = ""
 user_index = 0
+
+
+
+
+
+
+
+def new_student(name_of_student):
+    students.append(name_of_student)
+
+    known_image_paths.append('faces/' + name_of_student.name + '1.jpeg')
+    known_image_paths.append('faces/' + name_of_student.name + '2.jpeg')
+
+    known_names.append(name_of_student.name)
+    known_names.append(name_of_student.name)
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
 
 def object_type(input):
     global user_type, user_index
@@ -120,19 +161,25 @@ def object_type(input):
 
 
 
+# dhruv = Employee()
+# anubhav = Student()
+# ayushmaan = Student()
+# hardick = Employee()
+# # nikhil = Employee()
+# # agam = Student()
+# dhruv.set_employee("dhruv",False)
+# # agam.set_student("agam")
+# ayushmaan.set_student("ayushmaan")
+# hardick.set_employee("hardick",True)
+# # nikhil.set_employee("nikhil", True)
+# anubhav.set_student("anubhav")
 
-dhruv = Employee()
-anubhav = Student()
-ayushmaan = Student()
-hardick = Employee()
-# nikhil = Employee()
-# agam = Student()
-dhruv.set_employee("dhruv",False)
-# agam.set_student("agam")
-ayushmaan.set_student("ayushmaan")
-hardick.set_employee("hardick",True)
-# nikhil.set_employee("nikhil", True)
-anubhav.set_student("anubhav")
+
+dhruv = Student()
+dhruv.set_student("dhruv")
+new_student(dhruv)
+
+
 
 
 
@@ -160,12 +207,12 @@ def main():
 
 
 
-    students[0] = anubhav
-    students[1] = ayushmaan
-    # students[2] = agam
-    # students[3] = pratham
-    employees[0] = hardick
-    employees[1] = dhruv
+    # students[0] = anubhav
+    # students[1] = ayushmaan
+    # # students[2] = agam
+    # # students[3] = pratham
+    # employees[0] = hardick
+    # employees[1] = dhruv
 
     
     input_name = facedetect()  
