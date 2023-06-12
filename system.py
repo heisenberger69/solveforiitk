@@ -2,7 +2,6 @@ from classes.employee import Employee
 from classes.student import Student
 from classes.visitor import Visitor
 import pyttsx3
-import mysql.connector
 
         
 
@@ -188,7 +187,7 @@ def main():
         engine.runAndWait()
 
 
-    elif user_type == "student" and students[user_index].inside_status == False:
+    elif user_type == "student" and students[user_index].name == input_name and students[user_index].inside_status == False:
         engine.say("student recognized successfully")
         engine.runAndWait()
         engine.say("welcome back to the campus")
