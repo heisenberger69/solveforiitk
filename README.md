@@ -29,10 +29,47 @@ This project is a face recognition system that identifies individuals and manage
 3. To register faces:
 
 
- add two images of each user in the faces folder with and name it name1.jpeg and name2.jpeg
+ add two or three images of each user in the faces folder with and name it name1.jpeg and name2.jpeg
 
 
- method 1(without using sql)
+ method 1  (without using sql):
+   - in the line 34 of system.py ,  add path of each image in single quotes(examples given)
+   - then in the line 37 of system.py, add names of the respective people in single quotes as many number of times 
+     as the number of images of that person(examples given)
+   - declare eveyone individually as student or employee just before the main fucntion
+
+        example- dhruv = Employee()
+                 hardick = Student()
+
+
+   - now inside main
+       set the attributes to employee objects like this-
+       dhruv.set_employee("dhruv",False) 
+             
+       and student like this-
+       hardick.set_student("hardick")
+
+
+   - now add them to the students or employees list
+       employees[0] = dhruv
+       students[0] = hardick
+
+ method 2 (using mysql)  (still have some bugs)
+   - first install mysql server and start a server
+   - then in the terminal that is running mysql, run
+
+
+    
+
+            
+        Create Data ;
+    Use Data ;
+    Create table Students ( name varchar(50) , roll int , status_in int , visiting_place varchar(50) , path1 varchar(100) , path2 varchar(100) , path3 varchar(100);
+    Insert into Students values( “name” , 0001 , 0 , “Delhi” ,  “faces/name1.jpeg” , “faces/name2.jepg” , “faces/name3.jpeg”);
+    
+
+
+     
 
 
 
@@ -44,7 +81,13 @@ This project is a face recognition system that identifies individuals and manage
 
    ```bash
    python3 system.py
+
+   or 
+
+   python3 systemsql.py
    ```
+
+
 
 
 
