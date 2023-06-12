@@ -1,5 +1,3 @@
-
-
 # Face Recognition System
 
 This project is a face recognition system that identifies individuals and manages their access to a facility or campus. The system recognizes registered students, employees, and visitors(to be implemented) based on their faces and performs appropriate actions based on their recognition status.
@@ -33,9 +31,10 @@ This project is a face recognition system that identifies individuals and manage
 
 
  method 1  (without using sql):
+   ```
    -type 
 
-   ```
+
     name = Student()
     name.set_student("name",True(or False if you want the student to be outside the campus initially))
     new_student(name)
@@ -55,6 +54,7 @@ This project is a face recognition system that identifies individuals and manage
 
 
     just before the main to register students,employees and visitors
+    ```
 
  method 2 (using mysql)  (still have some bugs and only for students)
    - first install mysql server and start a server
