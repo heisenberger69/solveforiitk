@@ -29,32 +29,34 @@ This project is a face recognition system that identifies individuals and manage
 3. To register faces:
 
 
- add two or three images of each user in the faces folder with and name it name1.jpeg and name2.jpeg
+ add two (or three for sql) images of each user in the faces folder with and name it name1.jpeg and name2.jpeg
 
 
  method 1  (without using sql):
-   - in the line 34 of system.py ,  add path of each image in single quotes(examples given)
-   - then in the line 37 of system.py, add names of the respective people in single quotes as many number of times 
-     as the number of images of that person(examples given)
-   - declare eveyone individually as student or employee just before the main fucntion
+   -type 
 
-        example- dhruv = Employee()
-                 hardick = Student()
+   ```
+    name = Student()
+    name.set_student("name",True(or False if you want the student to be outside the campus initially))
+    new_student(name)
+    ```
+    or 
+    ```
+    name = Employee()
+    name.set_employee("name",True(or False if you want the employee to be outside the campus initially ))
+    new_employee(name)
+    ```
+    or 
+    
+    ```
+    name = Visitor()
+    name.set_visitor("name",True(or False if you want the visitor to be outside the campus initially ))
+    new_visitor(name)
 
 
-   - now inside main
-       set the attributes to employee objects like this-
-       dhruv.set_employee("dhruv",False) 
-             
-       and student like this-
-       hardick.set_student("hardick")
+    just before the main to register students,employees and visitors
 
-
-   - now add them to the students or employees list
-       employees[0] = dhruv
-       students[0] = hardick
-
- method 2 (using mysql)  (still have some bugs)
+ method 2 (using mysql)  (still have some bugs and only for students)
    - first install mysql server and start a server
    - then in the terminal that is running mysql, run
 

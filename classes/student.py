@@ -6,7 +6,8 @@ class Student:
         self.inside_status = True
         self.visit_place = ""
 
-    def set_student(self, name):
+    def set_student(self, name, inside_status):
     
         self.name = name
+        self.inside_status = inside_status
         # self.is_student = True

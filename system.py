@@ -38,10 +38,8 @@ def facedetect():
     cap.release()
     cv2.destroyAllWindows()
 
-    # known_image_paths = [ 'faces/dhruv1.jpeg', 'faces/dhruv2.jpeg','faces/anubhav1.jpeg','faces/anubhav2.jpeg' ,'faces/hardick1.jpeg','faces/hardick2.jpeg']
     known_face_encodings = []
 
-    # known_names = ['dhruv','dhruv','anubhav','anubhav','hardick','hardick']  
 
     for image_path in known_image_paths:
         image = face_recognition.load_image_file(image_path)
@@ -111,7 +109,22 @@ def new_student(name_of_student):
 
     known_names.append(name_of_student.name)
     known_names.append(name_of_student.name)
+def new_employee(name_of_employee):
+    employees.append(name_of_employee)
 
+    known_image_paths.append('faces/' + name_of_employee.name + '1.jpeg')
+    known_image_paths.append('faces/' + name_of_employee.name + '2.jpeg')
+
+    known_names.append(name_of_employee.name)
+    known_names.append(name_of_employee.name)
+def new_visitor(name_of_visitor):
+    visitors.append(name_of_visitor)
+
+    known_image_paths.append('faces/' + name_of_visitor.name + '1.jpeg')
+    known_image_paths.append('faces/' + name_of_visitor.name + '2.jpeg')
+
+    known_names.append(name_of_visitor.name)
+    known_names.append(name_of_visitor.name)    
 
 
 
@@ -147,11 +160,7 @@ def object_type(input):
             user_index = i
             break
 
-
-    # if i>100000 and <999999:
-    #     user_type = "student"
-    # else
-    #     user_type = "employee"    
+    
             
 
 
@@ -161,25 +170,19 @@ def object_type(input):
 
 
 
-# dhruv = Employee()
-# anubhav = Student()
-# ayushmaan = Student()
-# hardick = Employee()
-# # nikhil = Employee()
-# # agam = Student()
-# dhruv.set_employee("dhruv",False)
-# # agam.set_student("agam")
-# ayushmaan.set_student("ayushmaan")
-# hardick.set_employee("hardick",True)
-# # nikhil.set_employee("nikhil", True)
-# anubhav.set_student("anubhav")
 
 
 dhruv = Student()
-dhruv.set_student("dhruv")
+dhruv.set_student("dhruv",True)
 new_student(dhruv)
 
+hardick = Employee()
+hardick.set_employee("hardick",False)
+new_employee(hardick)
 
+anubhav = Visitor()
+anubhav.set_visitor("anubhav",False)
+new_visitor(anubhav)
 
 
 
@@ -190,30 +193,6 @@ new_student(dhruv)
 def main():
 
      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # students[0] = anubhav
-    # students[1] = ayushmaan
-    # # students[2] = agam
-    # # students[3] = pratham
-    # employees[0] = hardick
-    # employees[1] = dhruv
-
     
     input_name = facedetect()  
     # input_name = input()       
@@ -262,9 +241,21 @@ def main():
 
 
 
-    elif user_type == "visitor":
+    elif user_type == "visitor" and visitors[user_index].name == input_name and visitors[user_index].inside_status == True:
         engine.say("visitor recognized successfully")
         engine.runAndWait()
+        engine.say("please come again")
+        engine.runAndWait()
+        visitors[user_index].inside_status == False
+
+    elif user_type == "visitor" and visitors[user_index].name == input_name and visitors[user_index].inside_status == False:
+        engine.say("visitor recognized successfully")
+        engine.runAndWait()
+        engine.say("You must leave the campus within 4 hours from now")
+        engine.runAndWait()
+        visitors[user_index].inside_status == True
+
+
 
     main()
 
