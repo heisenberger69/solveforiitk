@@ -2,6 +2,32 @@ from classes.employee import Employee
 from classes.student import Student
 from classes.visitor import Visitor
 import pyttsx3
+import mysql.connector
+
+        
+connection = mysql.connector.connect(host='localhost',
+                                     database='STUDENT',
+                                     user='root',
+                                     password = 'new_password')
+
+
+cursor = connection.cursor()
+query = ("SELECT * FROM STUDENT_DETAILS ;")
+cursor.execute(query)
+rows = cursor.fetchall()
+objects = []
+paths = []
+names = []
+
+for row in rows:
+    obj = Student(row[0], row[1], True , row[3])
+    pat = [row[4], row[5] , row[6]]
+    name = [row[0],row[0],row[0]]
+    objects.append(obj)
+    paths.append(pat)
+    names.append(name)
+
+
 
 engine = pyttsx3.init()
 
@@ -27,10 +53,10 @@ def facedetect():
     cap.release()
     cv2.destroyAllWindows()
 
-    known_image_paths = [  'faces/dhruv.jpeg', 'faces/anubhav.jpeg', 'faces/hardick.jpeg','faces/hardick2.jpeg','faces/hardick3.jpeg','faces/hardick4.jpeg','faces/pratham1.jpeg','faces/pratham2.jpeg','faces/pratham3.jpeg','faces/pratham4.jpeg','faces/agam.jpeg']
+    known_image_paths = paths
     known_face_encodings = []
 
-    known_names = ['dhruv','anubhav','hardick','hardick','hardick','hardick','pratham','pratham','pratham','pratham','agam']  
+    known_names = names 
 
     for image_path in known_image_paths:
         image = face_recognition.load_image_file(image_path)
@@ -55,7 +81,6 @@ def facedetect():
             first_match_index = matches.index(True)
             name = known_names[first_match_index]  
 
-        # print(f"Face recognized: {name}")
         return name
 
 import speech_recognition as sr
@@ -116,18 +141,14 @@ def object_type(input):
 
 
 
-dhruv = Student()
-pratham = Student()
-ayushmaan = Student()
-hardick = Visitor()
-nikhil = Employee()
-agam = Student()
-dhruv.set_student("dhruv")
-agam.set_student("agam")
-ayushmaan.set_student("ayushmaan")
-hardick.set_visitor("hardick", False)
-nikhil.set_employee("nikhil", True)
-pratham.set_student("pratham")
+
+# dhruv.set_student("dhruv")
+# agam.set_student("agam")
+# ayushmaan.set_student("ayushmaan")
+# hardick.set_visitor("hardick", False)
+# nikhil.set_employee("nikhil", True)
+# pratham.set_student("pratham")
+# anubhav.set_student("anubhav")
 
 
 
@@ -136,20 +157,40 @@ pratham.set_student("pratham")
 
 
 def main():
-    
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     students[0] = dhruv
     students[1] = ayushmaan
     students[2] = agam
     students[3] = pratham
+    students[4] = anubhav
     visitors[0] = hardick
     employees[0] = nikhil
 
     
-    input_name = facedetect()          
+    input_name = facedetect()  
+    # input_name = input()       
 
     object_type(input_name)
+    # print(input_name)
+    # input_name = input()
 
     if user_type == "student" and students[user_index].name == input_name and students[user_index].inside_status == True:
         engine.say("student recognized successfully")
@@ -164,7 +205,7 @@ def main():
         engine.runAndWait()
 
 
-    elif user_type == "student" and students[user_index].inside_status == False:
+    elif user_type == "student" and students[user_index].name == input_name and students[user_index].inside_status == False:
         engine.say("student recognized successfully")
         engine.runAndWait()
         engine.say("welcome back to the campus")
