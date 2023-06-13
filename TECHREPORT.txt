@@ -23,6 +23,11 @@ The program uses three classes: Student, Employee, and Visitor, each representin
 of 1000 instances for each class to store the user objects. For each user, two known face images are associated with their name and stored 
 in the known_image_paths list. The names are stored in the known_names list.
 
+MySQL Implementation:
+SQL implementation is also done to store the dataset of Students(only), so after adding the images in faces/ folder, the students can be added in the 
+MySQL database through the commands given in README.md, so even if the code face some errors or bugs or stop functioning, the database wont be lost and code can be run again and
+all the previous details such as inside outside status or visit place(if outside) will continue to be the same.
+
 User Identification and Access Control:
 The object_type function determines the user type (student, employee, or visitor) based on the input name. It searches through the respective 
 user lists and sets the global variables user_type and user_index to identify the user.
