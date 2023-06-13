@@ -180,6 +180,10 @@ hardick = Employee()
 hardick.set_employee("hardick",False)
 new_employee(hardick)
 
+ayushmaan = Employee()
+ayushmaan.set_employee("ayushmaan",False)
+new_employee(ayushmaan)
+
 anubhav = Visitor()
 anubhav.set_visitor("anubhav",False)
 new_visitor(anubhav)
