@@ -95,7 +95,7 @@ This project is a face recognition system that identifies individuals and manage
 
 ## Contributors
 
-- Hardick Jindal
+- Hardik Jindal
 - Dhruv Mittal
 - Nikhil Gupta
 - Raghav Manglik
