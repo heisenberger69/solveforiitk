@@ -1,9 +1,33 @@
-from classes.employee import Employee
 from classes.student import Student
-from classes.visitor import Visitor
 import pyttsx3
 
+import mysql.connector
+
         
+connection = mysql.connector.connect(host='localhost',
+                                     database='DATA',
+                                     user='root',
+                                     password = 'Raghav')
+
+
+cursor = connection.cursor()
+query = ("SELECT * FROM STUDENTS ;")
+cursor.execute(query)
+rows = cursor.fetchall()
+students = []
+known_image_paths = []
+known_names = []
+
+for row in rows:
+    obj = Student()
+    obj.set_student(row[0],row[2])     
+    pat = [row[4], row[5] , row[6]]
+    name = [row[0],row[0],row[0]]
+    students.append(obj)
+    known_image_paths.append(pat)
+    known_names.append(name)
+
+       
 
 engine = pyttsx3.init()
 
@@ -15,9 +39,6 @@ import numpy as np
 import io
 
 
-known_image_paths = []
-
-known_names = []  
 
 def facedetect():
 
@@ -88,10 +109,6 @@ def textfromspeech():
     return value
 
 
-students = [Student() for _ in range(1000)]
-employees = [Employee() for _ in range(1000)]
-visitors = [Visitor() for _ in range(1000)]
-
 user_type = ""
 user_index = 0
 
@@ -109,30 +126,6 @@ def new_student(name_of_student):
 
     known_names.append(name_of_student.name)
     known_names.append(name_of_student.name)
-def new_employee(name_of_employee):
-    employees.append(name_of_employee)
-
-    known_image_paths.append('faces/' + name_of_employee.name + '1.jpeg')
-    known_image_paths.append('faces/' + name_of_employee.name + '2.jpeg')
-
-    known_names.append(name_of_employee.name)
-    known_names.append(name_of_employee.name)
-def new_visitor(name_of_visitor):
-    visitors.append(name_of_visitor)
-
-    known_image_paths.append('faces/' + name_of_visitor.name + '1.jpeg')
-    known_image_paths.append('faces/' + name_of_visitor.name + '2.jpeg')
-
-    known_names.append(name_of_visitor.name)
-    known_names.append(name_of_visitor.name)    
-
-
-
-
-    
-
-
-
 
 
 
@@ -148,51 +141,13 @@ def object_type(input):
             user_index = i
             break
 
-    for i, visitor in enumerate(visitors):
-        if visitor.name == input:
-            user_type = "visitor"
-            user_index = i
-            break
-
-    for i, employee in enumerate(employees):
-        if employee.name == input:
-            user_type = "employee"
-            user_index = i
-            break
-
     
             
-
-
-
-
-
-
-
-
 
 
 dhruv = Student()
 dhruv.set_student("dhruv",True)
 new_student(dhruv)
-
-hardick = Employee()
-hardick.set_employee("hardick",False)
-new_employee(hardick)
-
-anubhav = Visitor()
-anubhav.set_visitor("anubhav",False)
-new_visitor(anubhav)
-
-
-rohit = Student()
-rohit.set_student("rohit",True)
-new_student(rohit)
-
-
-nandini= Student()
-nandini.set_student("nandini",True)
-new_student(nandini)
 
 
 
@@ -230,42 +185,8 @@ def main():
         students[user_index].visit_place = "campus"
         students[user_index].inside_status = True
        
-    
-
-    elif user_type == "employee" and  employees[user_index].name == input_name and employees[user_index].inside_status == True:
-        engine.say("employee recognized successfully")
-        engine.runAndWait()
-        engine.say("happy journey")
-        engine.runAndWait()
-        employees[user_index].inside_status = False
-
-
-    elif user_type == "employee" and  employees[user_index].name == input_name and employees[user_index].inside_status == False:
-        engine.say("employee recognized successfully")
-        engine.runAndWait()
-        engine.say("welcome back to the campus")
-        engine.runAndWait()
-        employees[user_index].inside_status = True
-
-
-
-    elif user_type == "visitor" and visitors[user_index].name == input_name and visitors[user_index].inside_status == True:
-        engine.say("visitor recognized successfully")
-        engine.runAndWait()
-        engine.say("please come again")
-        engine.runAndWait()
-        visitors[user_index].inside_status == False
-
-    elif user_type == "visitor" and visitors[user_index].name == input_name and visitors[user_index].inside_status == False:
-        engine.say("visitor recognized successfully")
-        engine.runAndWait()
-        engine.say("You must leave the campus within 4 hours from now")
-        engine.runAndWait()
-        visitors[user_index].inside_status == True
-
-
 
     main()
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
