@@ -1,0 +1,58 @@
+*********************************************************TECHNICAL REPORT**********************************************************************
+
+
+Required Libraries and Dependencies:
+The program utilizes the following libraries and dependencies:
+pyttsx3: Text-to-speech library for audio feedback.
+face_recognition: Face recognition library for face detection and recognition.
+cv2: OpenCV library for image and video processing.
+numpy: Numerical computing library for array operations.
+io: Input/output library for handling images and bytes.
+speech_recognition: Speech recognition library for voice input processing.
+Face Detection and Recognition:
+The facedetect function captures video frames from the webcam, displays them, and detects faces using the face_recognition library. 
+It compares the detected faces with known face encodings and names to identify individuals. If a match is found, the function returns 
+the name of the recognized person.
+
+Speech Recognition:
+The textfromspeech function utilizes the speech_recognition library to capture speech input from the microphone. It adjusts for ambient noise, 
+listens for audio input, and then uses the Google Speech Recognition API to convert the audio into text. The recognized text is returned as the output.
+
+User Classes and Data Structures:
+The program uses three classes: Student, Employee, and Visitor, each representing a different type of user. The program initializes lists 
+of 1000 instances for each class to store the user objects. For each user, two known face images are associated with their name and stored 
+in the known_image_paths list. The names are stored in the known_names list.
+
+User Identification and Access Control:
+The object_type function determines the user type (student, employee, or visitor) based on the input name. It searches through the respective 
+user lists and sets the global variables user_type and user_index to identify the user.
+
+Access Control Logic:
+The main function serves as the entry point of the program. It calls the facedetect function to capture the face of the individual 
+seeking access. The object_type function is then called to identify the user. Based on the user type and access status, the program 
+provides appropriate audio feedback and performs access control actions:
+
+For students, the program asks for the desired destination, updates the visit place and inside status, and provides audio feedback accordingly.
+For employees, the program greets them and updates the inside status based on their previous status.
+For visitors, the program provides instructions and updates the inside status accordingly.
+User Enrollment:
+The program includes functions (new_student, new_employee, new_visitor) to enroll new users by appending their instances to the 
+respective user lists. The functions also associate two known face images with each user and store the paths and names in the appropriate lists.
+
+Program Execution:
+The program starts by initializing the Student, Employee, and Visitor objects for existing users. It then enters the main function 
+to handle access control based on face recognition. The program continuously loops, capturing faces, identifying users, and providing 
+audio feedback until interrupted.
+
+Time and Accuracy: 
+To determine the accuracy of our face recgnition model, we carried out 100 tests, on 5 different humans, each human being subjected to 20 tests. On an 
+average, the model delivered successful recognition 15.82 out of 20 times. In an ideal situation, the time taken by the model for 1 iteration was 
+measured to be approximately 3 seconds. 
+
+Conclusion:
+The Face Recognition-based Campus Access System demonstrates the use of face recognition technology to control access to campus areas. 
+By combining face detection, recognition, and user management, the program enables seamless identification and access control for students, 
+employees, and visitors. It provides audio feedback and prompts users for voice input, enhancing the user experience and ensuring a secure and 
+convenient campus access system.
+
+**************************************************************************************************************************************************

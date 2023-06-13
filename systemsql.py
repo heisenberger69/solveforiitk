@@ -1,3 +1,4 @@
+
 from classes.student import Student
 import pyttsx3
 
@@ -27,6 +28,7 @@ for row in rows:
     known_image_paths.append(pat)
     known_names.append(name)
 
+connection.close()
        
 
 engine = pyttsx3.init()
@@ -118,14 +120,6 @@ user_index = 0
 
 
 
-def new_student(name_of_student):
-    students.append(name_of_student)
-
-    known_image_paths.append('faces/' + name_of_student.name + '1.jpeg')
-    known_image_paths.append('faces/' + name_of_student.name + '2.jpeg')
-
-    known_names.append(name_of_student.name)
-    known_names.append(name_of_student.name)
 
 
 
@@ -142,19 +136,17 @@ def object_type(input):
             break
 
     
-            
-
-
-dhruv = Student()
-dhruv.set_student("dhruv",True)
-new_student(dhruv)
-
-
-
 
 
 def main():
+    
+    connection = mysql.connector.connect(host='localhost',
+                                        database='DATA',
+                                        user='root',
+                                        password = 'Raghav')
 
+
+    cursor = connection.cursor()
      
     
     input_name = facedetect()  
@@ -169,8 +161,14 @@ def main():
         engine.say("where do you wish to go")
         engine.runAndWait()
         destination = textfromspeech()
+        
+        
         students[user_index].visit_place = destination
+        query = ("UPDATE STUDENTS SET visiting = %s where name = %s")
+        cursor.execute(query,(destination,input_name,))        
         students[user_index].inside_status = False
+        query = ("UPDATE STUDENTS SET in_status = 0 where name = %s ;")
+        cursor.execute(query(input_name,))           
         engine.say("Enjoy your visit to ")
         engine.say(str(destination))
         engine.runAndWait()
@@ -181,10 +179,16 @@ def main():
         engine.runAndWait()
         engine.say("welcome back to the campus")
         engine.runAndWait()
-        
+        query = ("UPDATE STUDENTS SET visiting = %s Where name = %s ;")
+        cursor.execute(query,("campus",input_name,))        
+        students[user_index].inside_status = False
+        query = ("UPDATE STUDENTS SET in_status = 1 Where name = %s ;")
+        cursor.execute(query,(input_name,))
         students[user_index].visit_place = "campus"
         students[user_index].inside_status = True
-       
+    
+    connection.close()
+    
 
     main()
 
