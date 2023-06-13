@@ -1,4 +1,4 @@
-# Face Recognition System
+# Face Recognition Based Entry/Exit Portal
 
 This project is a face recognition system that identifies individuals and manages their access to a facility or campus. The system recognizes registered students, employees, and visitors(to be implemented) based on their faces and performs appropriate actions based on their recognition status.
 
