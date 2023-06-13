@@ -9,6 +9,7 @@ This project is a face recognition system that identifies individuals and manage
 - Speech recognition for user input using the SpeechRecognition library
 - Object-oriented programming approach with classes for Student, Employee, and Visitor
 - Integration of face recognition, speech recognition, and object management
+- MySQL to update the records of students, so even if the code stops or face some error, dataset can be easily retrieved to run the system again
 
 ## Setup and Installation
 
