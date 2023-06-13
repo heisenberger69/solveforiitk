@@ -47,7 +47,7 @@ audio feedback until interrupted.
 Time and Accuracy: 
 To determine the accuracy of our face recgnition model, we carried out 100 tests, on 5 different humans, each human being subjected to 20 tests. On an 
 average, the model delivered successful recognition 15.82 out of 20 times. In an ideal situation, the time taken by the model for 1 iteration was 
-measured to be approximately 3 seconds. 
+measured to be approximately 3 seconds for the facial recognition and 8 seconds for the complete interaction. 
 
 Conclusion:
 The Face Recognition-based Campus Access System demonstrates the use of face recognition technology to control access to campus areas. 
